@@ -2,6 +2,21 @@
   "name": "next-app",
   "version": "0.1.0",
   "private": true,
+  "description": "A login app built with Next.js, Tailwind CSS, Zod, and React Hook Form.",
+  "author": "Franck Abgrall",
+  "license": "MIT",
+  "homepage": "https://github.com/lulu0729/next-app#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kefranabg/readme-md-generator.git"
+  },
+  "bugs": {
+    "url": "https://github.com/lulu0729/next-app/issues"
+  },
+  "engines": {
+    "npm": ">=10.2.1",
+    "node": ">=18.17.0"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -13,13 +28,14 @@
   },
   "dependencies": {
     "@headlessui/react": "^1.7.17",
+    "@hookform/resolvers": "^3.3.2",
     "axios": "^1.6.0",
     "next": "14.0.0",
     "react": "^18",
     "react-dom": "^18",
+    "react-hook-form": "^7.48.1",
     "react-hot-toast": "^2.4.1",
-    "validator": "^13.11.0",
-    "xss-filters": "^1.2.7"
+    "zod": "^3.22.4"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.16.5",

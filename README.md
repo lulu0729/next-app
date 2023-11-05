@@ -1,36 +1,71 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<h1 align="center">Welcome to next-app 👋</h1>
+<p>
+  <a href="https://www.npmjs.com/package/next-app" target="_blank">
+    <img alt="Version" src="https://img.shields.io/npm/v/next-app.svg">
+  </a>
+  <img src="https://img.shields.io/badge/npm-%3E%3D10.2.1-blue.svg" />
+  <img src="https://img.shields.io/badge/node-%3E%3D18.17.0-blue.svg" />
+  <a href="https://github.com/lulu0729/readme-md-generator#readme" target="_blank">
+    <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
+  </a>
+  <a href="https://github.com/lulu0729/readme-md-generator/graphs/commit-activity" target="_blank">
+    <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" />
+  </a>
+  <a href="https://github.com/lulu0729/readme-md-generator/blob/master/LICENSE" target="_blank">
+    <img alt="License: MIT" src="https://img.shields.io/github/license/lulu0729/next-app" />
+  </a>
+</p>
 
-## Getting Started
+> A login app built with Next.js, Tailwind CSS, Zod, and React Hook Form.
 
-First, run the development server:
+### 🏠 [Homepage](https://github.com/lulu0729/next-app#readme)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Prerequisites
+
+- npm >=10.2.1
+- node >=18.17.0
+
+## Install
+
+```sh
+npm install
 ```
 
+## Usage
+
+```sh
+npm run dev
+```
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Run tests
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+```sh
+npm run test
+```
+## Directory Structure
+```
+next-app
+├── __test__ -- tests
+│   ├── Login.test.tsx -- login test
+│   └── Menu.test.tsx -- menu test
+└── src
+    ├── app
+    │   ├── favicon.ico
+    │   ├── globals.css
+    │   ├── layout.tsx
+    │   ├── login
+    │   │   └── page.tsx -- login page
+    │   └── page.tsx
+    ├── components
+    │   └── Menu.tsx  -- menu component
+    └── lib
+        └── schema.ts  -- login form schema
+```
+## Author
 
-## Learn More
+👤 **yiyinglu**
 
-To learn more about Next.js, take a look at the following resources:
+## 🤝 Contributing
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/lulu0729/next-app/issues).

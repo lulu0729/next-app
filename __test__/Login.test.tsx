@@ -14,15 +14,15 @@ describe('LoginPage', () => {
       });
 
     it('should render the login page', () => {
-        render(<LoginPage />); // ARRANGE
+        render(<LoginPage />);
 
-        const usernameInput = screen.getByLabelText('username'); // ACT
-        const passwordInput = screen.getByLabelText('password'); // ACT
-        const loginButton = screen.getByText('login'); // ACT
+        const usernameInput = screen.getByLabelText('username');
+        const passwordInput = screen.getByLabelText('password');
+        const loginButton = screen.getByText('login');
 
-        expect(usernameInput).toBeInTheDocument(); // ASSERT
-        expect(passwordInput).toBeInTheDocument(); // ASSERT
-        expect(loginButton).toBeInTheDocument(); // ASSERT
+        expect(usernameInput).toBeInTheDocument();
+        expect(passwordInput).toBeInTheDocument();
+        expect(loginButton).toBeInTheDocument();
     });
 
     it('should display validation errors for empty fields', async () => {
@@ -31,8 +31,8 @@ describe('LoginPage', () => {
 
         await userEvent.click(loginButton);
 
-        expect(screen.getByText('Username is required.')).toBeInTheDocument();
-        expect(screen.getByText('Password is required.')).toBeInTheDocument();
+        expect(await screen.findByText('Username is required.')).toBeInTheDocument();
+        expect(await screen.findByText('Password is required.')).toBeInTheDocument();
     });
 
     it('should display validation error for short password', async () => {
@@ -49,30 +49,7 @@ describe('LoginPage', () => {
         await userEvent.click(loginButton);
 
         expect(axiosMock.post).not.toBeCalled();
-        expect(screen.getByText('Password should be at least 6 characters long.')).toBeInTheDocument();
-    });
-
-    test('should call onLogin with sanitized username and password', async () => {
-        render(<LoginPage />);
-        const usernameInput = screen.getByLabelText('username');
-        const passwordInput = screen.getByLabelText('password');
-        const loginButton = screen.getByText('login');
-        const toastMock = toast as jest.Mocked<typeof toast>;
-
-        const axiosMock = axios as jest.Mocked<typeof axios>;
-        axiosMock.post.mockResolvedValueOnce({ data: { success: false } });
-        fireEvent.change(usernameInput, { target: { value: '<script>alert();</script>test' } });
-        fireEvent.change(passwordInput, { target: { value: 'password123' } });
-        await userEvent.click(loginButton);
-        await waitFor(() => {
-          expect(axiosMock.post).toHaveBeenCalledWith('/api/login', {
-            username: '&lt;script>alert();&lt;/script>test',
-            password: 'password123',
-          });
-
-        });
-        expect(toastMock.error).toHaveBeenCalledWith('Login failed!');
-        expect(toastMock.success).not.toHaveBeenCalled();
+        expect(await screen.findByText('Password must be at least 6 characters.')).toBeInTheDocument();
       });
       test('validates form and calls onLogin when submitted with valid inputs', async () => {
         render(<LoginPage />);
@@ -95,6 +72,28 @@ describe('LoginPage', () => {
         });
         expect(toastMock.success).toHaveBeenCalledWith('Login successful!');
         expect(toastMock.error).not.toHaveBeenCalled();
+      });
+      test('should display error toast when login failed', async () => {
+        render(<LoginPage />);
+        const usernameInput = screen.getByLabelText('username');
+        const passwordInput = screen.getByLabelText('password');
+        const loginButton = screen.getByText('login');
+        const toastMock = toast as jest.Mocked<typeof toast>;
+
+        const axiosMock = axios as jest.Mocked<typeof axios>;
+        axiosMock.post.mockResolvedValueOnce({ data: { success: false } });
+        fireEvent.change(usernameInput, { target: { value: 'usernametest' } });
+        fireEvent.change(passwordInput, { target: { value: 'password123' } });
+        await userEvent.click(loginButton);
+        await waitFor(() => {
+          expect(axiosMock.post).toHaveBeenCalledWith('/api/login', {
+            username: 'usernametest',
+            password: 'password123',
+          });
+
+        });
+        expect(toastMock.error).toHaveBeenCalledWith('Login failed!');
+        expect(toastMock.success).not.toHaveBeenCalled();
       });
       test('should display error toast on login failure', async () => {
         render(<LoginPage />);

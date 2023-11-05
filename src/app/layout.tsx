@@ -1,7 +1,7 @@
 import './globals.css'
 
 import { Inter } from 'next/font/google'
-import Menu from '@/app/components/Menu'
+import Menu from '@/components/Menu'
 import type { Metadata } from 'next'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -13,6 +13,10 @@ export const metadata: Metadata = {
 
 
 const data = [
+  {
+    label: 'Login',
+    link: '/login',
+  },
   {
     label: 'Menu 1',
     children: [
@@ -52,7 +56,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Menu data={data} firstChild={true} />
+        <Menu data={data} />
         {children}
       </body>
     </html>
